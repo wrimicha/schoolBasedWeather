@@ -1,66 +1,64 @@
-//package sheridan.wrimicha.assignment3.repository
-//
-//import ca.tetervak.flowerdata.database.WeatherDao
+package sheridan.wrimicha.assignment3.repository
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import ca.tetervak.flowerdata.database.WeatherDao
+import ca.tetervak.flowerdata.database.WeatherEntity
 //import sheridan.wrimicha.assignment3.database.FlowerEntity
-//import sheridan.wrimicha.assignment3.model.Weather
+import sheridan.wrimicha.assignment3.repository.WeatherRepository
+import sheridan.wrimicha.assignment3.model.Weather
 //import sheridan.wrimicha.assignment3.network.CatalogJson
 //import sheridan.wrimicha.assignment3.network.FlowerDataApi
-//import sheridan.wrimicha.assignment3.network.FlowerJson
-//import sheridan.wrimicha.assignment3.network.IMAGE_FOLDER_URL
-//import kotlinx.coroutines.Dispatchers
-//import kotlinx.coroutines.flow.Flow
-//import kotlinx.coroutines.flow.map
-//import javax.inject.Inject
-//
-//class WeatherRepositoryWebRoom @Inject constructor(
-//    private val weatherDao: WeatherDao
-//) : WeatherRepository {
-//
-//    override fun getAll(): Flow<List<Weather>> =
-//        weatherDao.getAll()
-//            .map { entityList ->
-//                entityList.map { entity ->
-//                    entity.asFlower()
-//                }
-//            }.flowOn(Dispatchers.IO)
-//
-//    override fun get(id: String): Flow<Weather> =
-//        flowerDao.get(id)
-//            .map { entity -> entity.asFlower() }
-//            .flowOn(Dispatchers.IO)
-//
-//    override suspend fun refresh() {
-//        val catalog: CatalogJson = FlowerDataApi.retrofitService.getCatalog()
-//        val entityList: List<FlowerEntity> =
-//            catalog.flowers.map { flowerJson ->
-//                flowerJson.asEntity()
-//            }
-//        flowerDao.insert(entityList)
-//    }
-//
+import sheridan.wrimicha.assignment3.network.AllWeatherDataJSON
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import sheridan.wrimicha.assignment3.network.WeatherDataApi
+import javax.inject.Inject
+
+class WeatherRepositoryWebRoom @Inject constructor(
+    private val weatherDao: WeatherDao
+) : WeatherRepository {
+
+//    override fun getAll(): Flow<Weather> = weatherDao.getAll()
+
+    override fun get(location: String): Flow<Weather> =
+        weatherDao.get(location)
+            .map { entity -> entity.asWeather() }
+            .flowOn(Dispatchers.IO)
+
+    override suspend fun refresh() {
+        val trafalgarWeather: AllWeatherDataJSON = WeatherDataApi.retrofitService.getTrafalgarWeather()
+        weatherDao.insert(trafalgarWeather.asEntity("trafalgar"))
+    }
+
 //    override suspend fun clear() {
 //        flowerDao.deleteAll()
-//    }
-//}
 //
-//fun FlowerEntity.asFlower() =
-//    Flower(
-//        id = id,
-//        label = label,
-//        price = price,
-//        text = text,
-//        imageUrl = IMAGE_FOLDER_URL + imageFile,
-//        wikiUrl = wikiUrl
-//    )
-//
-//
-//
-//fun FlowerJson.asEntity() =
-//    FlowerEntity(
-//        id = id,
-//        label = label,
-//        price = price.substring(1).toFloat(),
-//        text = text,
-//        imageFile = pictures.large,
-//        wikiUrl = wiki
-//    )
+}
+
+fun WeatherEntity.asWeather() =
+    Weather(
+        location = location,
+        description = description,
+        temp = temp,
+        temp_max = temp_max,
+        temp_min = temp_min,
+        feels_like = feels_like,
+        humidity = humidity,
+        pressure = pressure
+    )
+
+
+fun AllWeatherDataJSON.asEntity(location: String) =
+    WeatherEntity(
+        location = location,
+        description = weather[0].description,
+        temp = main.temp,
+        temp_max = main.temp_max,
+        temp_min = main.temp_min,
+        feels_like = main.feels_like,
+        humidity = main.humidity,
+        pressure = main.pressure
+    )

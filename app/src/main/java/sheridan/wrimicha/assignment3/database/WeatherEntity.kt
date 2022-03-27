@@ -8,15 +8,12 @@ import androidx.room.PrimaryKey
 data class WeatherEntity(
 
     @PrimaryKey
-    val id: String,
-
-    val label: String,
-    val price: Float,
-    val text: String,
-
-    @ColumnInfo(name = "image_file")
-    val imageFile: String,
-
-    @ColumnInfo(name = "wiki_url")
-    val wikiUrl: String
+    val location: String,
+    val description: String,
+    val temp: Double,
+    val temp_max: Double,
+    val temp_min: Double,
+    val feels_like: Double,
+    val humidity: Int,
+    val pressure: Int
 )

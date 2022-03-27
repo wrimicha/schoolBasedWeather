@@ -9,14 +9,14 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface WeatherDao {
 
-    @Query("SELECT * FROM weather")
-    fun getAll(): Flow<List<WeatherEntity>>
+//    @Query("SELECT * FROM weather")
+//    fun getAll(): Flow<WeatherEntity>
 
-    @Query("SELECT * FROM weather WHERE id = :id")
-    fun get(id: String): Flow<WeatherEntity>
+    @Query("SELECT * FROM weather WHERE location = :location")
+    fun get(location: String): Flow<WeatherEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(list: List<WeatherEntity>)
+    suspend fun insert(weatherEntity: WeatherEntity)
 
     @Query("DELETE FROM weather")
     suspend fun deleteAll()
