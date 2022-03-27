@@ -8,5 +8,5 @@ interface WeatherRepository {
     fun get(location: String): Flow<Weather>
 //    fun getAll(): Flow<Weather>
     suspend fun refresh()
-//    suspend fun clear()
+    suspend fun clear()
 }

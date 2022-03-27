@@ -1,5 +1,6 @@
 package sheridan.wrimicha.assignment3.repository
 
+import android.util.Log
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import ca.tetervak.flowerdata.database.WeatherDao
@@ -31,11 +32,18 @@ class WeatherRepositoryWebRoom @Inject constructor(
     override suspend fun refresh() {
         val trafalgarWeather: AllWeatherDataJSON = WeatherDataApi.retrofitService.getTrafalgarWeather()
         weatherDao.insert(trafalgarWeather.asEntity("trafalgar"))
+
+        val hmcWeather: AllWeatherDataJSON = WeatherDataApi.retrofitService.getHMCWeather()
+        weatherDao.insert(hmcWeather.asEntity("hmc"))
+
+        val davisWeather: AllWeatherDataJSON = WeatherDataApi.retrofitService.getDavisWeather()
+        weatherDao.insert(davisWeather.asEntity("davis"))
     }
 
-//    override suspend fun clear() {
-//        flowerDao.deleteAll()
-//
+    override suspend fun clear() {
+        weatherDao.deleteAll()
+    }
+
 }
 
 fun WeatherEntity.asWeather() =
@@ -49,7 +57,6 @@ fun WeatherEntity.asWeather() =
         humidity = humidity,
         pressure = pressure
     )
-
 
 fun AllWeatherDataJSON.asEntity(location: String) =
     WeatherEntity(

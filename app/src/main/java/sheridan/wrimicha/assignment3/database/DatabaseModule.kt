@@ -17,19 +17,19 @@ object DatabaseModule {
     private const val TAG = "DataBaseModule"
 
     @Provides
-    fun provideFlowerDao(database: WeatherDatabase): WeatherDao {
+    fun provideWeatherDao(database: WeatherDatabase): WeatherDao {
         Log.d(TAG, "provideFlowerDao: the FlowerDao object is returned")
         return database.weatherDao()
     }
 
     @Singleton
     @Provides
-    fun provideFlowerDatabase(@ApplicationContext context: Context): WeatherDatabase {
+    fun provideWeatherDatabase(@ApplicationContext context: Context): WeatherDatabase {
         Log.d(TAG, "provideFlowerDatabase: the database object is created")
         return Room.databaseBuilder(
             context,
             WeatherDatabase::class.java,
-            "flower_database"
+            "weather_database"
         ).build()
     }
 }
