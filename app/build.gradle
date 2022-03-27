@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -48,6 +51,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    // live data builder dependency
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
+
     // Moshi
     implementation 'com.squareup.moshi:moshi-kotlin:1.9.3'
 
@@ -61,5 +67,16 @@ dependencies {
     //retrofit2
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.0.0'
+
+    // Dependency Injection with Hilt
+    implementation "com.google.dagger:hilt-android:2.40.5"
+    kapt "com.google.dagger:hilt-android-compiler:2.40.5"
+
+    // swipe-refresh support
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    // database
+    implementation "androidx.room:room-runtime:2.4.2"
+    kapt "androidx.room:room-compiler:2.4.2"
 
 }

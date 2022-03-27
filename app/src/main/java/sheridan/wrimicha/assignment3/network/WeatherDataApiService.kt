@@ -1,6 +1,5 @@
 package sheridan.wrimicha.assignment3.network
 
-import sheridan.wrimicha.assignment3.model.AllWeatherData
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -19,7 +18,10 @@ private val retrofit = Retrofit.Builder()
 
 interface WeatherDataApiService {
     @GET("2.5/weather?lat=43.46909742475904&lon=-79.70006256015566&appid=43936a51edf878b2a70d6b0e00ac3091")
-    suspend fun getWeather(): AllWeatherData
+    suspend fun getTrafalgarWeather(): AllWeatherDataJSON
+
+    @GET("2.5/weather?lat=43.46909742475904&lon=-79.70006256015566&appid=43936a51edf878b2a70d6b0e00ac3091")
+    suspend fun getDavisWeather(): AllWeatherDataJSON
 }
 
 object WeatherDataApi {
