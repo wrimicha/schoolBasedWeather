@@ -31,13 +31,13 @@ class WeatherRepositoryWebRoom @Inject constructor(
 
     override suspend fun refresh() {
         val trafalgarWeather: AllWeatherDataJSON = WeatherDataApi.retrofitService.getTrafalgarWeather()
-        weatherDao.insert(trafalgarWeather.asEntity("trafalgar"))
+        weatherDao.insert(trafalgarWeather.asEntity("Trafalgar"))
 
         val hmcWeather: AllWeatherDataJSON = WeatherDataApi.retrofitService.getHMCWeather()
-        weatherDao.insert(hmcWeather.asEntity("hmc"))
+        weatherDao.insert(hmcWeather.asEntity("HMC"))
 
         val davisWeather: AllWeatherDataJSON = WeatherDataApi.retrofitService.getDavisWeather()
-        weatherDao.insert(davisWeather.asEntity("davis"))
+        weatherDao.insert(davisWeather.asEntity("Davis"))
     }
 
     override suspend fun clear() {

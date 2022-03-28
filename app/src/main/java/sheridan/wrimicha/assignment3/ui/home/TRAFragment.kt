@@ -9,13 +9,13 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import sheridan.wrimicha.assignment3.R
-import sheridan.wrimicha.assignment3.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import sheridan.wrimicha.assignment3.databinding.FragmentTraBinding
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class TRAFragment : Fragment() {
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: TRAViewModel by viewModels()
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentHomeBinding.inflate(inflater)
+        val binding = FragmentTraBinding.inflate(inflater)
 
         navController = findNavController()
 

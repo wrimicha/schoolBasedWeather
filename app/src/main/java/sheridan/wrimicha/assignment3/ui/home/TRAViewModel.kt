@@ -13,11 +13,11 @@ import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class TRAViewModel @Inject constructor(
     private val repository: WeatherRepository
 ) : ViewModel() {
 
-    val weather: LiveData<Weather> = repository.get("trafalgar").asLiveData()
+    val weather: LiveData<Weather> = repository.get("Trafalgar").asLiveData()
 
     enum class Status { STARTED, REFRESHING, LOADED, ERROR }
     private val _status = MutableLiveData(Status.STARTED)
