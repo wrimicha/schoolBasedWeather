@@ -20,10 +20,10 @@ interface WeatherDataApiService {
     @GET("weather?lat=43.46909742475904&lon=-79.70006256015566&appid=43936a51edf878b2a70d6b0e00ac3091")
     suspend fun getTrafalgarWeather(): AllWeatherDataJSON
 
-    @GET("weather?lat=43.46909742475904&lon=-79.70006256015566&appid=43936a51edf878b2a70d6b0e00ac3091")
+    @GET("weather?lat=43.6561118324381&lon=-79.73875545313541&appid=43936a51edf878b2a70d6b0e00ac3091")
     suspend fun getDavisWeather(): AllWeatherDataJSON
 
-    @GET("weather?lat=43.46909742475904&lon=-79.70006256015566&appid=43936a51edf878b2a70d6b0e00ac3091")
+    @GET("weather?lat=43.591205667162306&lon=-79.64811091951879&appid=43936a51edf878b2a70d6b0e00ac3091")
     suspend fun getHMCWeather(): AllWeatherDataJSON
 }
 

@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="sheridan.wrimicha.assignment3.ui.home.TRAFragment"
-        android:label="@string/title_home"
+        android:label="Trafalgar"
         tools:layout="@layout/fragment_tra" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="sheridan.wrimicha.assignment3.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="sheridan.wrimicha.assignment3.ui.hmc.HMCFragment"
+        android:label="HMC"
+        tools:layout="@layout/fragment_hmc" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="sheridan.wrimicha.assignment3.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:name="sheridan.wrimicha.assignment3.ui.davis.DavisFragment"
+        android:label="Davis"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
