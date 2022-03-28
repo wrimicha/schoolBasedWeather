@@ -21,5 +21,5 @@
         android:id="@+id/navigation_notifications"
         android:name="sheridan.wrimicha.assignment3.ui.davis.DavisFragment"
         android:label="Davis"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_davis" />
 </navigation>

@@ -1,42 +1,61 @@
 package sheridan.wrimicha.assignment3.ui.davis
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import sheridan.wrimicha.assignment3.databinding.FragmentNotificationsBinding
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import sheridan.wrimicha.assignment3.R
+import dagger.hilt.android.AndroidEntryPoint
+import sheridan.wrimicha.assignment3.databinding.FragmentDavisBinding
+import sheridan.wrimicha.assignment3.databinding.FragmentHmcBinding
+import sheridan.wrimicha.assignment3.ui.home.HMCViewModel
 
+@AndroidEntryPoint
 class DavisFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private val viewModel: DavisViewModel by viewModels()
+    private lateinit var navController: NavController
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(DavisViewModel::class.java)
-
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val binding = FragmentDavisBinding.inflate(inflater)
+
+        navController = findNavController()
+
+        val divider = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
+
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.refresh()
+        }
+//        viewModel.status.observe(viewLifecycleOwner){ status ->
+//
+//            binding.swipeRefresh.isRefreshing =
+//                status == CatalogViewModel.Status.REFRESHING
+//
+//            if(status == CatalogViewModel.Status.ERROR){
+//                if(!isErrorDialogShown()){
+//                    showErrorDialog(
+//                        title = getString(R.string.app_name),
+//                        message = getString(R.string.cannot_load_the_data)
+//                    )
+//                    viewModel.reset()
+//                }
+//            }
+//        }
+
+        return binding.root
     }
 }
