@@ -17,7 +17,7 @@ class DavisViewModel @Inject constructor(
     private val repository: WeatherRepository
 ) : ViewModel() {
 
-    val weather: LiveData<Weather> = repository.get("davis").asLiveData()
+    val weather: LiveData<Weather> = repository.get("Davis").asLiveData()
 
     enum class Status { STARTED, REFRESHING, LOADED, ERROR }
     private val _status = MutableLiveData(Status.STARTED)

@@ -13,5 +13,4 @@ data class AllWeatherDataJSON(
     val timezone: Int,
     val visibility: Int,
     val weather: List<WeatherJSON>,
-    val wind: WindJSON
 )

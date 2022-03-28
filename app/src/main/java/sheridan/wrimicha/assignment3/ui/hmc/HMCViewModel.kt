@@ -17,7 +17,7 @@ class HMCViewModel @Inject constructor(
     private val repository: WeatherRepository
 ) : ViewModel() {
 
-    val weather: LiveData<Weather> = repository.get("hmc").asLiveData()
+    val weather: LiveData<Weather> = repository.get("HMC").asLiveData()
 
     enum class Status { STARTED, REFRESHING, LOADED, ERROR }
     private val _status = MutableLiveData(Status.STARTED)

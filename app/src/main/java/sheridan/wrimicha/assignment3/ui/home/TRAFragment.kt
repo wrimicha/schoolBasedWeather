@@ -58,24 +58,20 @@ class TRAFragment : Fragment() {
         return binding.root
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//        inflater.inflate(R.menu.catalog, menu)
-//    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.weather, menu)
+    }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.action_refresh -> {
-//                viewModel.refresh()
-//                true
-//            }
-//            R.id.action_clear ->{
-//                viewModel.clear()
-//                true
-//            }
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_refresh -> {
+                viewModel.refresh()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
 }
 
