@@ -39,21 +39,7 @@ class TRAFragment : Fragment() {
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.refresh()
         }
-//        viewModel.status.observe(viewLifecycleOwner){ status ->
-//
-//            binding.swipeRefresh.isRefreshing =
-//                status == CatalogViewModel.Status.REFRESHING
-//
-//            if(status == CatalogViewModel.Status.ERROR){
-//                if(!isErrorDialogShown()){
-//                    showErrorDialog(
-//                        title = getString(R.string.app_name),
-//                        message = getString(R.string.cannot_load_the_data)
-//                    )
-//                    viewModel.reset()
-//                }
-//            }
-//        }
+
 
         return binding.root
     }
