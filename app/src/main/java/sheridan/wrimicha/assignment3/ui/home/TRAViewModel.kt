@@ -36,13 +36,6 @@ class TRAViewModel @Inject constructor(
         }
     }
 
-//    fun clear(){
-//        viewModelScope.launch(Dispatchers.IO){
-//            repository.clear()
-//            _status.postValue(Status.STARTED)
-//        }
-//    }
-
     fun reset(){
         _status.value = Status.STARTED
     }

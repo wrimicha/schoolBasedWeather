@@ -14,6 +14,8 @@
 
     <!-- bottom nav -->
     <string name="title_tra">Trafalgar</string>
+    <string name="title_hmc">HMC</string>
+    <string name="title_davis">Davis</string>
 
 
 </resources>
